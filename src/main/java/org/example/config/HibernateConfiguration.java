@@ -1,11 +1,14 @@
 package org.example.config;
 
+import org.example.model.Profile;
 import org.example.model.Student;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ComponentScan(basePackages = "org.example")
 public class HibernateConfiguration {
 
     @Bean
@@ -14,6 +17,7 @@ public class HibernateConfiguration {
 
         configuration
                 .addAnnotatedClass(Student.class)
+                .addAnnotatedClass(Profile.class)
                 .addPackage("org.example")
                 .setProperty("hibernate.connection.driver_class", "org.postgresql.Driver")
                 .setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/postgres")
