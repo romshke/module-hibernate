@@ -18,12 +18,17 @@ public class Student {
     @OneToOne(mappedBy = "student", cascade = CascadeType.REMOVE)
     private Profile profile;
 
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
     public Student() {
     }
 
-    public Student(String name, Integer age) {
+    public Student(String name, Integer age, Group group) {
         this.name = name;
         this.age = age;
+        this.group = group;
     }
 
     public void setId(Long id) {
