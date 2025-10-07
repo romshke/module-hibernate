@@ -1,5 +1,6 @@
 package org.example.config;
 
+import org.example.model.Course;
 import org.example.model.Group;
 import org.example.model.Profile;
 import org.example.model.Student;
@@ -20,13 +21,14 @@ public class HibernateConfiguration {
                 .addAnnotatedClass(Student.class)
                 .addAnnotatedClass(Profile.class)
                 .addAnnotatedClass(Group.class)
+                .addAnnotatedClass(Course.class)
                 .addPackage("org.example")
                 .setProperty("hibernate.connection.driver_class", "org.postgresql.Driver")
                 .setProperty("hibernate.connection.url", "jdbc:postgresql://localhost:5432/postgres")
                 .setProperty("hibernate.connection.username", "postgres")
                 .setProperty("hibernate.connection.password", "password")
                 .setProperty("hibernate.show_sql", "true")
-                .setProperty("hibernate.hbm2ddl.auto", "create-drop");
+                .setProperty("hibernate.hbm2ddl.auto", "update");
 
         return configuration.buildSessionFactory();
     }

@@ -1,9 +1,11 @@
 package org.example;
 
 import org.example.config.HibernateConfiguration;
+import org.example.model.Course;
 import org.example.model.Group;
 import org.example.model.Profile;
 import org.example.model.Student;
+import org.example.service.CourseService;
 import org.example.service.GroupService;
 import org.example.service.ProfileService;
 import org.example.service.StudentService;
@@ -23,21 +25,31 @@ public class App {
         StudentService studentService = context.getBean(StudentService.class);
         ProfileService profileService = context.getBean(ProfileService.class);
         GroupService groupService = context.getBean(GroupService.class);
+        CourseService courseService = context.getBean(CourseService.class);
 
-        Group group1 = groupService.saveGroup("1", 2025L);
-        Group group2 = groupService.saveGroup("2", 2025L);
-        Group group3 = groupService.saveGroup("3", 2025L);
+//        Group group1 = groupService.saveGroup("1", 2025L);
+//        Group group2 = groupService.saveGroup("2", 2025L);
+//        Group group3 = groupService.saveGroup("3", 2025L);
 
-        Student student1 = new Student("Ivan", 20, group1);
-        Student student2 = new Student("Oleg", 30, group1);
+//        Student student1 = new Student("Ivan", 20, group1);
+//        Student student2 = new Student("Oleg", 30, group1);
+//
+//        studentService.saveStudent(student1);
+//        studentService.saveStudent(student2);
 
-        studentService.saveStudent(student1);
-        studentService.saveStudent(student2);
+        Course course1 = new Course("math-1", "math");
+        Course course2 = new Course("math-2", "math");
+        Course course3 = new Course("math-3", "math");
 
-        System.out.println();
-        System.out.println();
-        System.out.println("____________________________________________________________");
+//        courseService.saveCourse(course1);
+//        courseService.saveCourse(course2);
+//        courseService.saveCourse(course3);
 
-        groupService.findAll();
+        courseService.enrollStudentToCourse(2L, 1L);
+        courseService.enrollStudentToCourse(2L, 2L);
+        courseService.enrollStudentToCourse(2L, 3L);
+
+        Student student = studentService.getById(2L);
+        System.out.println(student);
     }
 }
